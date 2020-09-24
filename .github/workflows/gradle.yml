@@ -37,11 +37,11 @@ jobs:
 
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.0.5
-      with:
+#       with:
         # Artifact name
-        name: petproject # optional
+#         name: petproject # optional
         # Destination path
-        path: build/libs/petproject* # optional
+#         path: build/libs/petproject* # optional
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v2
