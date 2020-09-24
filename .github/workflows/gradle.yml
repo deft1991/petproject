@@ -21,14 +21,30 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         java-version: 1.15
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+
     - name: Build with Gradle
       run: ./gradlew test
 
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: otus-algo
+        path: |
+          build/libs/petproject*
+          !dist/**/*.md
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-report
+        path: build/test-results/test/TEST-com.deft.petproject.PetprojectApplicationTests.xml
+
 #  build_and_test:
 #
-#    runs-on: ubuntu-latest
+#    runs-on: self-hosted
 #
 #    steps:
 #      - uses: actions/checkout@v2
