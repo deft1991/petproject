@@ -22,7 +22,7 @@ public class TestDataUtil {
                 book.addToKeyword(randomString());
             }
 
-            book.setPage((int)(Math.random() * 100));
+            book.setPage((int) (Math.random() * 100));
             book.setTitle(randomString());
 
             thriftBookList.add(book);

@@ -16,7 +16,7 @@ import java.util.Arrays;
  * created on 07.10.2020
  */
 public class MessageTransalator {
-    private static final byte[] COLON = new byte[]{(byte)58};
+    private static final byte[] COLON = new byte[]{(byte) 58};
     private static final String ERROR_STRUCT_NAME = "result";
     private static final String ERROR_FIELD_NAME = "exception";
     private static final short ERROR_FIELD_POSITION = (short) 99;

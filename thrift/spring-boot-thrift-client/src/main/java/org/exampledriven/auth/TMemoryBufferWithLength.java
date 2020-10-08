@@ -6,7 +6,7 @@ import org.apache.thrift.transport.TMemoryBuffer;
  * @author Sergey Golitsyn
  * created on 07.10.2020
  */
-public class TMemoryBufferWithLength  extends TMemoryBuffer {
+public class TMemoryBufferWithLength extends TMemoryBuffer {
     private int actualLength = 0;
 
     public TMemoryBufferWithLength(int size) {

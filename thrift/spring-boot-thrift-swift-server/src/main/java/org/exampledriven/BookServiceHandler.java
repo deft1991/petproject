@@ -1,6 +1,7 @@
 package org.exampledriven;
 
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,11 @@ public class BookServiceHandler implements BookService {
         List<Book> result = new ArrayList<>(books.size());
 
         books.forEach(book -> {
-                Book bookWithISBN = new Book.Builder(book)
-                    .setIsbn(BookUtil.generateISBN())
-                    .build();
-                result.add(bookWithISBN);
-            }
+                    Book bookWithISBN = new Book.Builder(book)
+                            .setIsbn(BookUtil.generateISBN())
+                            .build();
+                    result.add(bookWithISBN);
+                }
 
         );
 

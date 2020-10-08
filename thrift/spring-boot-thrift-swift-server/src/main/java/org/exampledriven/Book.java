@@ -3,21 +3,21 @@ package org.exampledriven;
 import com.facebook.swift.codec.*;
 import com.facebook.swift.codec.ThriftField.Requiredness;
 import com.facebook.swift.codec.ThriftField.Recursiveness;
+
 import java.util.*;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 
 @ThriftStruct("Book")
-public final class Book
-{
+public final class Book {
     @ThriftConstructor
     public Book(
-        @ThriftField(value=1, name="isbn", requiredness=Requiredness.NONE) final String isbn,
-        @ThriftField(value=2, name="title", requiredness=Requiredness.NONE) final String title,
-        @ThriftField(value=3, name="author", requiredness=Requiredness.NONE) final String author,
-        @ThriftField(value=4, name="page", requiredness=Requiredness.NONE) final int page,
-        @ThriftField(value=5, name="keyword", requiredness=Requiredness.NONE) final List<String> keyword,
-        @ThriftField(value=6, name="bookType", requiredness=Requiredness.NONE) final BookType bookType
+            @ThriftField(value = 1, name = "isbn", requiredness = Requiredness.NONE) final String isbn,
+            @ThriftField(value = 2, name = "title", requiredness = Requiredness.NONE) final String title,
+            @ThriftField(value = 3, name = "author", requiredness = Requiredness.NONE) final String author,
+            @ThriftField(value = 4, name = "page", requiredness = Requiredness.NONE) final int page,
+            @ThriftField(value = 5, name = "keyword", requiredness = Requiredness.NONE) final List<String> keyword,
+            @ThriftField(value = 6, name = "bookType", requiredness = Requiredness.NONE) final BookType bookType
     ) {
         this.isbn = isbn;
         this.title = title;
@@ -34,30 +34,35 @@ public final class Book
             this.isbn = isbn;
             return this;
         }
+
         private String title;
 
         public Builder setTitle(String title) {
             this.title = title;
             return this;
         }
+
         private String author;
 
         public Builder setAuthor(String author) {
             this.author = author;
             return this;
         }
+
         private int page;
 
         public Builder setPage(int page) {
             this.page = page;
             return this;
         }
+
         private List<String> keyword;
 
         public Builder setKeyword(List<String> keyword) {
             this.keyword = keyword;
             return this;
         }
+
         private BookType bookType;
 
         public Builder setBookType(BookType bookType) {
@@ -65,7 +70,9 @@ public final class Book
             return this;
         }
 
-        public Builder() { }
+        public Builder() {
+        }
+
         public Builder(Book other) {
             this.isbn = other.isbn;
             this.title = other.title;
@@ -76,58 +83,69 @@ public final class Book
         }
 
         public Book build() {
-            return new Book (
-                this.isbn,
-                this.title,
-                this.author,
-                this.page,
-                this.keyword,
-                this.bookType
+            return new Book(
+                    this.isbn,
+                    this.title,
+                    this.author,
+                    this.page,
+                    this.keyword,
+                    this.bookType
             );
         }
     }
 
     private final String isbn;
 
-    @ThriftField(value=1, name="isbn", requiredness=Requiredness.NONE)
-    public String getIsbn() { return isbn; }
+    @ThriftField(value = 1, name = "isbn", requiredness = Requiredness.NONE)
+    public String getIsbn() {
+        return isbn;
+    }
 
     private final String title;
 
-    @ThriftField(value=2, name="title", requiredness=Requiredness.NONE)
-    public String getTitle() { return title; }
+    @ThriftField(value = 2, name = "title", requiredness = Requiredness.NONE)
+    public String getTitle() {
+        return title;
+    }
 
     private final String author;
 
-    @ThriftField(value=3, name="author", requiredness=Requiredness.NONE)
-    public String getAuthor() { return author; }
+    @ThriftField(value = 3, name = "author", requiredness = Requiredness.NONE)
+    public String getAuthor() {
+        return author;
+    }
 
     private final int page;
 
-    @ThriftField(value=4, name="page", requiredness=Requiredness.NONE)
-    public int getPage() { return page; }
+    @ThriftField(value = 4, name = "page", requiredness = Requiredness.NONE)
+    public int getPage() {
+        return page;
+    }
 
     private final List<String> keyword;
 
-    @ThriftField(value=5, name="keyword", requiredness=Requiredness.NONE)
-    public List<String> getKeyword() { return keyword; }
+    @ThriftField(value = 5, name = "keyword", requiredness = Requiredness.NONE)
+    public List<String> getKeyword() {
+        return keyword;
+    }
 
     private final BookType bookType;
 
-    @ThriftField(value=6, name="bookType", requiredness=Requiredness.NONE)
-    public BookType getBookType() { return bookType; }
+    @ThriftField(value = 6, name = "bookType", requiredness = Requiredness.NONE)
+    public BookType getBookType() {
+        return bookType;
+    }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return toStringHelper(this)
-            .add("isbn", isbn)
-            .add("title", title)
-            .add("author", author)
-            .add("page", page)
-            .add("keyword", keyword)
-            .add("bookType", bookType)
-            .toString();
+                .add("isbn", isbn)
+                .add("title", title)
+                .add("author", author)
+                .add("page", page)
+                .add("keyword", keyword)
+                .add("bookType", bookType)
+                .toString();
     }
 
     @Override
@@ -139,26 +157,26 @@ public final class Book
             return false;
         }
 
-        Book other = (Book)o;
+        Book other = (Book) o;
 
         return
-            Objects.equals(isbn, other.isbn) &&
-            Objects.equals(title, other.title) &&
-            Objects.equals(author, other.author) &&
-            Objects.equals(page, other.page) &&
-            Objects.equals(keyword, other.keyword) &&
-            Objects.equals(bookType, other.bookType);
+                Objects.equals(isbn, other.isbn) &&
+                        Objects.equals(title, other.title) &&
+                        Objects.equals(author, other.author) &&
+                        Objects.equals(page, other.page) &&
+                        Objects.equals(keyword, other.keyword) &&
+                        Objects.equals(bookType, other.bookType);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.deepHashCode(new Object[] {
-            isbn,
-            title,
-            author,
-            page,
-            keyword,
-            bookType
+        return Arrays.deepHashCode(new Object[]{
+                isbn,
+                title,
+                author,
+                page,
+                keyword,
+                bookType
         });
     }
 }
