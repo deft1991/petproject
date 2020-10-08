@@ -17,7 +17,7 @@ public class BookController implements BookApi {
 
     @Override
     public ResponseEntity<String> addBook(Book book) {
-        return ResponseEntity.ok(book.getTitle()+" is added");
+        return ResponseEntity.ok(book.getTitle() + " is added");
     }
 
     @Override
