@@ -1,13 +1,13 @@
-package com.deft.fox;
+package com.example.second;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FoxApplication {
+public class SecondApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FoxApplication.class, args);
+		SpringApplication.run(SecondApplication.class, args);
 	}
 
 }

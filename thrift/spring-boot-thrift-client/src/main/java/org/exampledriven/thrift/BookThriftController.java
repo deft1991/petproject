@@ -27,6 +27,8 @@ public class BookThriftController {
     public ResponseEntity<String> test(@RequestParam(value = "compact", required = false, defaultValue = "false") boolean compact) throws TException, JsonProcessingException {
 
         List<Book> books = bookServiceThriftClient.createBooks(TestDataUtil.getGrpcTestData());
+        books = bookServiceThriftClient.createBooks(TestDataUtil.getGrpcTestData());
+        books = bookServiceThriftClient.createBooks(TestDataUtil.getGrpcTestData());
 
         if (compact) {
             return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
