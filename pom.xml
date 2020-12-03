@@ -13,6 +13,8 @@
         <module>thrift</module>
         <module>swagger</module>
         <module>multipleconfig</module>
+        <module>grpc</module>
+        <module>queryDSL</module>
     </modules>
 
 </project>
