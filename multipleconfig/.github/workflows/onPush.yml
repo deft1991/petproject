@@ -1,0 +1,37 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Java CI on push in any branch.
+
+# Triggered when code is pushed to any branch in a repository
+on: push
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.CI_CD_ACCESS_TOKEN }}
+
+      #      - name: Checkout submodule
+      #        run: |
+      #          git submodule sync
+      #          git submodule update --init --recursive
+
+      - name: Set up JDK 1.15
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 15
+
+      ## Start Tests
+      #      - name: Run the Maven verify phase
+      #        run: mvn -B verify
+      ## End Tests
+
+      # Start Build
+      - name: Build All project with Maven
+        run: mvn clean install package --file pom.xml
+      # End build

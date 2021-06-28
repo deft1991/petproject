@@ -28,7 +28,7 @@ public class UserServiceTest {
     private static final Long USER_ID = 1L;
 
     @Autowired
-   public UserService service;
+    public UserService service;
 
     @Test
     public void getByAgeExcluding() {

@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MultiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(new Class[]{MultiApplication.class, SecondApplication.class, ThirdApplication.class},
-				args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(new Class[]{MultiApplication.class, SecondApplication.class, ThirdApplication.class},
+                args);
+    }
 
 }

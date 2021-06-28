@@ -23,7 +23,7 @@ public class Person {
     private String firstName;
 
     @NotBlank
-    @Pattern(regexp ="[SOME REGULAR EXPRESSION]")
+    @Pattern(regexp = "[SOME REGULAR EXPRESSION]")
 //    @ApiModelProperty(notes = "Last name of the person.", example = "Doe", required = true, position = 2)
     private String lastName;
 

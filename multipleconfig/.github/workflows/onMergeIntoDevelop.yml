@@ -1,0 +1,251 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: On merge into DEVELOP branch.
+
+on:
+  push:
+    branches: [ master, develop ]
+    paths-ignore:
+      - 'admin/**'
+# think how to divide deploy between files
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Checkout submodule
+        run: |
+          git submodule sync
+          git submodule update --init --recursive
+
+      - name: Set up JDK 1.15
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 15
+
+      ## Start Tests
+      #      - name: Run the Maven verify phase
+      #        run: mvn -B verify
+      ## End Tests
+
+      # Start Build
+      - name: Build All project with Maven
+        run: mvn clean install package --file pom.xml
+      # End build
+
+      # Start Upload
+      - name: Upload an Auth App Upload Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          # Artifact name
+          name: auth-app
+          # A file, directory or wildcard pattern that describes what to upload
+          path: auth-app/target/auth*
+
+      - name: Upload an Entrypoint App Upload Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          # Artifact name
+          name: entrypoint-app
+          # A file, directory or wildcard pattern that describes what to upload
+          path: entrypoint-app/target/entrypoint-app*
+
+      - name: Upload a Gameconfig App Upload Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          # Artifact name
+          name: gameconfig-app
+          # A file, directory or wildcard pattern that describes what to upload
+          path: gameconfig-app/target/gameconfig-app*
+
+      # Start Upload
+      - name: Upload a Multistarter Upload Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          # Artifact name
+          name: multistarter
+          # A file, directory or wildcard pattern that describes what to upload
+          path: multistarter/target/multistarter*
+
+      - name: Upload a Battle Upload Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          # Artifact name
+          name: battle-app
+          # A file, directory or wildcard pattern that describes what to upload
+          path: battle-app/target/battle-app*
+            # End Upload
+
+      #  Start Clean Deploy Dir
+      - name: Clean Auth Deploy Dir
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            rm -r /home/s.golitsyn_pro/cicd/auth/*
+      - name: Clean Entry Point Deploy Dir
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            rm -r /home/s.golitsyn_pro/cicd/entrypoint/*
+      - name: Clean Gameconfig Deploy Dir
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            rm -r /home/s.golitsyn_pro/cicd/gameconfig/*
+
+        #  Start Clean Deploy Dir
+      - name: Clean Multistarter Deploy Dir
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.RUNNER_KEY }}
+
+          command: |
+            rm -r /home/cicd/multistarter/*
+
+      - name: Clean Battle Deploy Dir
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_02_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            rm -r /home/s.golitsyn_pro/cicd/battle/*
+      # End Clean Deploy Dir
+
+
+      # Start Deploy On Server
+      - name: Deploy to Server Auth
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+          SOURCE: "auth-app/target/*.jar"
+          REMOTE_HOST: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          TARGET: /home/s.golitsyn_pro/cicd/auth
+
+      - name: Deploy to Server Entrypoint
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+          SOURCE: "entrypoint-app/target/*.jar"
+          REMOTE_HOST: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          TARGET: /home/s.golitsyn_pro/cicd/entrypoint
+
+      - name: Deploy to Server Gameconfig
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+          SOURCE: "gameconfig-app/target/*.jar"
+          REMOTE_HOST: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          TARGET: /home/s.golitsyn_pro/cicd/gameconfig
+
+      # Start Deploy On Server
+      - name: Deploy to Server Multistarter
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.RUNNER_KEY }}
+          SOURCE: "multistarter/target/*exec.jar"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USER }}
+          TARGET: /home/cicd/multistarter
+
+
+      - name: Deploy to Server Battle
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+          SOURCE: "battle-app/target/*exec.jar"
+          REMOTE_HOST: ${{ secrets.PROJECTX_DEV_02_REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          TARGET: /home/s.golitsyn_pro/cicd/battle
+      # End Deploy On Server
+
+      #  Restart Entry Point Service
+      - name: Restart Auth Service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            /etc/init.d/auth-service stop
+            cp /home/s.golitsyn_pro/cicd/auth/*.jar /home/s.golitsyn_pro/auth/auth-1.0.0-SNAPSHOT.jar
+            /etc/init.d/auth-service start
+
+      - name: Restart Entry Point Service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            /etc/init.d/entrypoint stop
+            cp /home/s.golitsyn_pro/cicd/entrypoint/*.jar /home/s.golitsyn_pro/entrypoint/entrypoint-1.0.0-SNAPSHOT.jar
+            /etc/init.d/entrypoint start
+
+      - name: Restart Gameconfig Service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_01_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            /etc/init.d/gameconfig stop
+            cp /home/s.golitsyn_pro/cicd/gameconfig/*.jar /home/s.golitsyn_pro/gameconfig/gameconfig-1.0.0-SNAPSHOT.jar
+            /etc/init.d/gameconfig start
+
+      #  Restart Service
+      - name: Restart Multistarter Service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.RUNNER_KEY }}
+
+          command: |
+            /etc/init.d/multistarter stop
+            cp /home/cicd/multistarter/*.jar /home/multistarter/multistarter-1.0.0-SNAPSHOT-exec.jar
+            /etc/init.d/multistarter start
+
+      - name: Restart Battle Service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.PROJECTX_DEV_02_REMOTE_HOST }}
+          username: ${{ secrets.PROJECTX_DEV_01_REMOTE_USER_GOL }}
+          privateKey: ${{ secrets.PROJECTX_DEV_03_RUNNER_KEY }}
+
+          command: |
+            /etc/init.d/battle stop
+            cp /home/s.golitsyn_pro/cicd/battle/*.jar /home/s.golitsyn_pro/battle/battle-1.0.0-SNAPSHOT-exec.jar
+            /etc/init.d/battle start
+#  Restart services

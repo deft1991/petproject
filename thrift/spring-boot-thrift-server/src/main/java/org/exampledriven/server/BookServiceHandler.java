@@ -18,7 +18,7 @@ public class BookServiceHandler implements BookService.Iface {
     @Override
     public List<Book> createBooks(List<Book> books) throws TException {
         Subject currentUser = SecurityUtils.getSubject();
-        if ( !currentUser.isAuthenticated() ) {
+        if (!currentUser.isAuthenticated()) {
             //collect user principals and credentials in a gui specific manner
             //such as username/password html form, X509 certificate, OpenID, etc.
             //We'll use the username/password example here since it is the most common.

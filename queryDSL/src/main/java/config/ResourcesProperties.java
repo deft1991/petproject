@@ -60,7 +60,7 @@ public class ResourcesProperties {
     private String hbm2ddlAuto;
 
     /**
-     *FILE STORAGE
+     * FILE STORAGE
      */
     @Value("${local.fs.path}")
     private String fsLocalPath;

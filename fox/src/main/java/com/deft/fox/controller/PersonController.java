@@ -31,21 +31,21 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = "application/json")
 //    @ApiOperation("Returns a specific person by their identifier. 404 if does not exist.")
     public Person getPersonById(/*@ApiParam("Id of the person to be obtained. Cannot be empty.")*/
-                                @PathVariable int id) {
+            @PathVariable int id) {
         return personService.getPersonById(id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
 //    @ApiOperation("Deletes a person from the system. 404 if the person's identifier is not found.")
     public void deletePerson(/*@ApiParam("Id of the person to be deleted. Cannot be empty.")*/
-                             @PathVariable int id) {
+            @PathVariable int id) {
         personService.deletePerson(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
 //    @ApiOperation("Creates a new person.")
     public Person createPerson(/*@ApiParam("Person information for a new person to be created.")*/
-                               @RequestBody Person person) {
+            @RequestBody Person person) {
         return personService.createPerson(person);
     }
 

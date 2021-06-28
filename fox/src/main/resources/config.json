@@ -1,12 +1,12 @@
 {
-  "groupId":"com.jackqt.backend.service",
-  "artifactId":"jackqt-service-code-gen",
-  "artifactVersion":"1.0.0-SNAPSHOT",
-  "library":"spring-boot",
-  "apiPackage":"com.jackqt.backend.service.controller",
-  "modelPackage":"com.jackqt.backend.service.model",
-  "invokerPackage":"com.jackqt.backend.service.util",
-  "basePackage":"com.jackqt.backend.service",
-  "configPackage":"com.jackqt.backend.service.config",
-  "interfaceOnly":"false"
+  "groupId": "com.jackqt.backend.service",
+  "artifactId": "jackqt-service-code-gen",
+  "artifactVersion": "1.0.0-SNAPSHOT",
+  "library": "spring-boot",
+  "apiPackage": "com.jackqt.backend.service.controller",
+  "modelPackage": "com.jackqt.backend.service.model",
+  "invokerPackage": "com.jackqt.backend.service.util",
+  "basePackage": "com.jackqt.backend.service",
+  "configPackage": "com.jackqt.backend.service.config",
+  "interfaceOnly": "false"
 }

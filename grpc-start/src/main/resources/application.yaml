@@ -1,0 +1,13 @@
+grpc:
+  port: 7777
+  enable-reflection: true
+
+spring:
+  application:
+    name: grpc-start
+
+# Enable logging
+logging:
+  level:
+    root: TRACE
+    com.deft: TRACE

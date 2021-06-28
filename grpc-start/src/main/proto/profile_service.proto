@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.deft.grpc;
+
+import "google/protobuf/empty.proto";
+
+import "profile_descriptor.proto";
+
+service ProfileService {
+  rpc GetCurrentProfile (google.protobuf.Empty) returns (ProfileDescriptor) {}
+
+  rpc DeleteCurrentProfile (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc clientStream (stream ProfileDescriptor) returns (google.protobuf.Empty) {}
+
+  rpc serverStream (google.protobuf.Empty) returns (stream ProfileDescriptor) {}
+
+  rpc biDirectionalStream (stream ProfileDescriptor) returns (stream ProfileDescriptor) {}
+}

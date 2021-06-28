@@ -35,7 +35,7 @@ jobs:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.5
           #       with:
-          # Artifact name
+        # Artifact name
         #         name: petproject # optional
         # Destination path
       #         path: build/libs/petproject* # optional
