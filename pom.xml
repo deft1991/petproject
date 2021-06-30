@@ -17,7 +17,7 @@
     </parent>
 
     <modules>
-        <module>grpc-start</module>
+        <module>grpc-server</module>
         <module>fox</module>
         <module>swagger</module>
         <module>thrift</module>
