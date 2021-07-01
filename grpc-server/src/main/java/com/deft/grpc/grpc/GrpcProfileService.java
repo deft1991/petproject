@@ -66,7 +66,8 @@ public class GrpcProfileService extends ProfileServiceGrpc.ProfileServiceImplBas
     }
 
     @Override
-    public StreamObserver<ProfileDescriptorOuterClass.ProfileDescriptor> biDirectionalStream(StreamObserver<ProfileDescriptorOuterClass.ProfileDescriptor> responseObserver) {
+    public StreamObserver<ProfileDescriptorOuterClass.ProfileDescriptor> biDirectionalStream(
+            StreamObserver<ProfileDescriptorOuterClass.ProfileDescriptor> responseObserver) {
 
         return new StreamObserver<>() {
             int pointCount = 0;
