@@ -1,10 +1,6 @@
-grpc:
-  port: 7777
-  enable-reflection: true
-
 spring:
   application:
-    name: grpc-start
+    name: grpc-client
 
 # Enable logging
 logging:

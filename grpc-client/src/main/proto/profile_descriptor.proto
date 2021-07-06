@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package com.deft.grpc;
+
+message ProfileDescriptor {
+  int64 profile_id = 1;
+  string name = 2;
+}

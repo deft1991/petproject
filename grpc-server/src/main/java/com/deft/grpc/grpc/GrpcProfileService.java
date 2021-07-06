@@ -4,6 +4,7 @@ import com.deft.grpc.ProfileDescriptorOuterClass;
 import com.deft.grpc.ProfileServiceGrpc;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
+import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
 
 /**
@@ -11,6 +12,7 @@ import org.lognet.springboot.grpc.GRpcService;
  * created on 6/28/21
  */
 
+@Slf4j
 @GRpcService
 public class GrpcProfileService extends ProfileServiceGrpc.ProfileServiceImplBase {
 
@@ -35,12 +37,10 @@ public class GrpcProfileService extends ProfileServiceGrpc.ProfileServiceImplBas
     @Override
     public StreamObserver<ProfileDescriptorOuterClass.ProfileDescriptor> clientStream(StreamObserver<Empty> responseObserver) {
         return new StreamObserver<>() {
-            int pointCount;
 
             @Override
             public void onNext(ProfileDescriptorOuterClass.ProfileDescriptor profileDescriptor) {
-                pointCount++;
-                System.out.println(pointCount);
+                log.info("ProfileDescriptor from client. Profile id: {}", profileDescriptor.getProfileId());
             }
 
             @Override
@@ -63,6 +63,7 @@ public class GrpcProfileService extends ProfileServiceGrpc.ProfileServiceImplBas
                     .setProfileId(i)
                     .build());
         }
+        responseObserver.onCompleted();
     }
 
     @Override
@@ -73,7 +74,7 @@ public class GrpcProfileService extends ProfileServiceGrpc.ProfileServiceImplBas
             int pointCount = 0;
             @Override
             public void onNext(ProfileDescriptorOuterClass.ProfileDescriptor profileDescriptor) {
-
+                log.info("biDirectionalStream, pointCount {}", pointCount);
                 responseObserver.onNext(ProfileDescriptorOuterClass.ProfileDescriptor
                         .newBuilder()
                         .setProfileId(pointCount++)

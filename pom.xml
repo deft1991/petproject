@@ -24,6 +24,7 @@
         <module>my-project 2</module>
         <module>my-project 3</module>
         <module>my-project 4</module>
+        <module>grpc-client</module>
     </modules>
 
     <properties>
