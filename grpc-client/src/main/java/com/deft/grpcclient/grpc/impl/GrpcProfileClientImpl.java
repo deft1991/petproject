@@ -74,11 +74,6 @@ public class GrpcProfileClientImpl implements GrpcProfileClient {
         }
     }
 
-    @Override
-    public void deleteCurrentProfile() {
-
-    }
-
     @SneakyThrows
     @Override
     public void clientStream(int times) {

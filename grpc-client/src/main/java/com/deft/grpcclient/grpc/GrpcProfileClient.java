@@ -8,8 +8,6 @@ public interface GrpcProfileClient {
 
     void getCurrentProfile();
 
-    void deleteCurrentProfile();
-
     void clientStream(int times);
 
     void serverStreamBlockingStub();

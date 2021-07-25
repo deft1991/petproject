@@ -7,6 +7,7 @@ import "google/protobuf/empty.proto";
 import "profile_descriptor.proto";
 
 service ProfileService {
+
   rpc GetCurrentProfile (google.protobuf.Empty) returns (ProfileDescriptor) {}
 
   rpc DeleteCurrentProfile (google.protobuf.Empty) returns (google.protobuf.Empty) {}

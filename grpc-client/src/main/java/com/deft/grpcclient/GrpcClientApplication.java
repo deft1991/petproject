@@ -33,11 +33,11 @@ public class GrpcClientApplication {
                 .build();
         try {
             GrpcProfileClient client = new GrpcProfileClientImpl(channel);
-//            client.getCurrentProfile();
-//            client.clientStream(10);
-//            client.serverStreamBlockingStub();
+            client.getCurrentProfile();
+            client.clientStream(10);
+            client.serverStreamBlockingStub();
             client.serverStreamAsyncStub();
-//            client.biDirectionalStream();
+            client.biDirectionalStream();
         } finally {
             // ManagedChannels use resources like threads and TCP connections. To prevent leaking these
             // resources the channel should be shut down when it will no longer be used. If it may be used
