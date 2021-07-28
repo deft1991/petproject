@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: grpc-color-generator
+grpc:
+  port: 6263
+  enable-reflection: true
+# Enable logging
+logging:
+  level:
+    root: INFO
+    com.deft: INFO

@@ -26,6 +26,7 @@
         <module>my-project 4</module>
         <module>grpc-client</module>
         <module>reward</module>
+        <module>colorrandomizer</module>
     </modules>
 
     <properties>
