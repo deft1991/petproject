@@ -1,3 +1,5 @@
+server:
+  port: 8082
 grpc:
   port: 7777
   enable-reflection: true
@@ -5,9 +7,20 @@ grpc:
 spring:
   application:
     name: grpc-start
-
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
 # Enable logging
 logging:
   level:
     root: INFO
     com.deft: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always

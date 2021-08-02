@@ -10,9 +10,8 @@ import org.vaadin.artur.helpers.LaunchUtil;
 
 /**
  * The entry point of the Spring Boot application.
- *
+ * <p>
  * Use the * and some desktop browsers.
- *
  */
 @SpringBootApplication
 @PWA(name = "My Project", shortName = "My Project")

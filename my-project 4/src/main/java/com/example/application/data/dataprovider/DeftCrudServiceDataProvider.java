@@ -14,7 +14,7 @@ import java.util.List;
  * @author Sergey Golitsyn
  * created on 07.12.2020
  */
-public class DeftCrudServiceDataProvider <T, F> extends FilterablePageableDataProvider<T, F> {
+public class DeftCrudServiceDataProvider<T, F> extends FilterablePageableDataProvider<T, F> {
 
     private final CrudService<T, Long> service;
 

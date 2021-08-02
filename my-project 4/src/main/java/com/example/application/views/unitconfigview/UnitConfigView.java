@@ -79,8 +79,8 @@ public class UnitConfigView extends Div {
 
     private Unit unit;
 
-    private final  UnitTypeService unitTypeService;
-    private final  DisplacementLayerTypeService displacementLayerTypeService;
+    private final UnitTypeService unitTypeService;
+    private final DisplacementLayerTypeService displacementLayerTypeService;
 
     public UnitConfigView(@Autowired UnitService unitService
             , @Autowired UnitTypeService unitTypeService
@@ -110,8 +110,8 @@ public class UnitConfigView extends Div {
         grid.addColumn("unitHealth").setHeader("Unit Health").setAutoWidth(true);
         grid.addColumn("unitsInGroup").setHeader("Units in Group").setAutoWidth(true);
 
-        grid.addColumn(unit -> unit.getUnitType() == null ? "" : unit.getUnitType().getAlias() )
-                        .setHeader("Unit Type").setAutoWidth(true);
+        grid.addColumn(unit -> unit.getUnitType() == null ? "" : unit.getUnitType().getAlias())
+                .setHeader("Unit Type").setAutoWidth(true);
 
         grid.addComponentColumn(unit -> {
             MultiselectComboBox<String> selectRoles = new MultiselectComboBox<>();

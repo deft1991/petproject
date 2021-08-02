@@ -18,13 +18,13 @@ public class TestClass {
 
         System.out.println(Long.toBinaryString(0L | (1L << 1)));
         System.out.println(Long.toBinaryString((1L << 1) | (1L << 2)));
-        System.out.println(Long.toBinaryString((1L << 1) | (1L << 2) | (1L<<3)));
+        System.out.println(Long.toBinaryString((1L << 1) | (1L << 2) | (1L << 3)));
 
 
-        System.out.println(Long.toBinaryString((1L << 1) | (1L << 2) & ~(1L<<2)));
+        System.out.println(Long.toBinaryString((1L << 1) | (1L << 2) & ~(1L << 2)));
 
         System.out.println("-=-=-=-=-=-");
-        System.out.println(Long.toBinaryString(((1L << 1) | (1L << 2) | (1L<<3)) & 1L));
+        System.out.println(Long.toBinaryString(((1L << 1) | (1L << 2) | (1L << 3)) & 1L));
         System.out.println(Long.toBinaryString((1L | 2L | 3L | 4L) & 4L));
 
     }
@@ -53,7 +53,6 @@ public class TestClass {
         }
         System.out.println(rez);
     }
-
 
 
 }

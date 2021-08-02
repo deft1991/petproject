@@ -40,5 +40,4 @@ public class UnitType extends AbstractEntity {
     }
 
 
-
 }

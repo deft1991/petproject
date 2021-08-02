@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.deft</groupId>
     <artifactId>PetProject</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -27,11 +27,36 @@
         <module>grpc-client</module>
         <module>reward</module>
         <module>colorrandomizer</module>
+        <module>springbootadmin</module>
+        <module>grpc-with-actuator</module>
+        <module>patterns</module>
     </modules>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <springbootadmin.project.version>0.0.1-SNAPSHOT</springbootadmin.project.version>
+        <grpc-with-actuator.project.version>1.0-SNAPSHOT</grpc-with-actuator.project.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.deft</groupId>
+                <artifactId>springbootadmin</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.deft</groupId>
+                <artifactId>grpc-with-actuator</artifactId>
+                <version>${grpc-with-actuator.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.deft</groupId>
+                <artifactId>grpc-server</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
