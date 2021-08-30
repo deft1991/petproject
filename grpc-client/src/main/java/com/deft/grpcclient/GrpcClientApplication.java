@@ -20,7 +20,6 @@ public class GrpcClientApplication {
      */
     public static void main(String[] args) throws Exception {
         // Access a service running on the local machine on port 7777
-//        String target = "localhost:7777";
         String target = "localhost:7777";
 
         // Create a communication channel to the server, known as a Channel. Channels are thread-safe
