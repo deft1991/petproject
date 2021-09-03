@@ -30,6 +30,7 @@
         <module>springbootadmin</module>
         <module>grpc-with-actuator</module>
         <module>patterns</module>
+        <module>udemy-java-cource</module>
     </modules>
 
     <properties>
