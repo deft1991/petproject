@@ -31,6 +31,7 @@
         <module>grpc-with-actuator</module>
         <module>patterns</module>
         <module>udemy-java-cource</module>
+        <module>my-udemy-course</module>
     </modules>
 
     <properties>
