@@ -43,8 +43,8 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>com.deft.udemy.instrumentation.changer.SummatorDemo</Main-Class>
-                                        <Premain-Class>com.deft.udemy.instrumentation.changer.Agent</Premain-Class>
+                                        <Main-Class>com.deft.udemy.garbage.instrumentation.changer.SummatorDemo</Main-Class>
+                                        <Premain-Class>com.deft.udemy.garbage.instrumentation.changer.Agent</Premain-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

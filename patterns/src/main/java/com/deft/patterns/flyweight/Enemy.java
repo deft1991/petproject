@@ -1,28 +1,45 @@
 package com.deft.patterns.flyweight;
 
-import com.deft.patterns.flyweight.factory.FrameFactory;
+import com.deft.patterns.flyweight.factory.FrameTypeFactory;
 import com.deft.patterns.flyweight.factory.IconFactory;
-import com.deft.patterns.flyweight.heavy.Frame;
 import com.deft.patterns.flyweight.heavy.FrameType;
 import com.deft.patterns.flyweight.heavy.Icon;
-import com.deft.patterns.flyweight.heavy.Weapon;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Sergey Golitsyn
  * created on 30.08.2021
  */
 public class Enemy {
-    private Frame frame;
+    private FrameType frame;
     private Icon icon;
-    private Weapon weapon;
 
-    public Enemy(Frame frame, Icon icon, Weapon weapon) {
+    // other data
+
+    private String name;
+    private int hitPoint;
+
+    public Enemy() {
+    }
+
+    public Enemy(FrameType frame, Icon icon) {
         this.frame = frame;
         this.icon = icon;
-        this.weapon = weapon;
+    }
+
+    public void createEnemy(String enemyName, int hitPoint, String name, Color color, String otherFrameData, String iconType, int height, int length, byte[] data) {
+        createEnemyFrame(name, color, otherFrameData);
+        createEnemyIcon(iconType, height, length, data);
+        this.name = enemyName;
+        this.hitPoint = hitPoint;
+    }
+
+    private void createEnemyFrame(String name, Color color, String otherFrameData) {
+        frame = FrameTypeFactory.getFrameType(name, color, otherFrameData);
+    }
+
+    private void createEnemyIcon(String type, int height, int length, byte[] data) {
+        icon = IconFactory.getIcon(type, height, length, data);
     }
 }

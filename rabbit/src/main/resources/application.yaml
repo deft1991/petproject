@@ -1,0 +1,20 @@
+#rabbitmq:
+#  image: rabbitmq:management
+#  host: projectx-dev-02.do-am.i-free.ru
+#  ports:
+#    - "5672:5672"
+#    - "25672:25672"
+spring:
+  rabbitmq:
+    host: projectx-dev-02.do-am.i-free.ru
+    port: 5672
+    username: mamkin
+    password: nagibator
+
+    custom:
+      some-event:
+        host: projectx-dev-02.do-am.i-free.ru
+        port: 15672
+        username: mamkin
+        password: nagibator
+
